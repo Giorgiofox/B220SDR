@@ -66,7 +66,18 @@ install -m 0644 "$FPGA_BIN" "$IMAGES_DIR/usrp_b210_fpga.bin"
 # permissions until the rules are re-triggered.
 log "reloading udev rules"
 udevadm control --reload-rules
-udevadm trigger --subsystem-match=usb --attr-match=idVendor=2500
+# --action=add matters. The default action for `udevadm trigger` is `change`,
+# which does not reliably re-apply a MODE:= assignment to an existing device
+# node. Replaying an `add` event does.
+udevadm trigger --action=add --subsystem-match=usb --attr-match=idVendor=2500
+udevadm settle
+
+for dev in /sys/bus/usb/devices/*-*; do
+    [ -r "$dev/idVendor" ] || continue
+    [ "$(cat "$dev/idVendor")" = "2500" ] || continue
+    node="/dev/bus/usb/$(printf %03d "$(cat "$dev/busnum")")/$(printf %03d "$(cat "$dev/devnum")")"
+    log "device node $node is now $(stat -c '%A %U:%G' "$node")"
+done
 
 log "done"
 log ""
