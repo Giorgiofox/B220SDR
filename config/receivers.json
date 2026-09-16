@@ -79,9 +79,9 @@
     {
       "id": "rx2",
       "enabled": true,
-      "name": "B220 full analog bandwidth 56 MS/s (82-138 MHz)",
+      "name": "B220 wide 52.4288 MS/s (83.8-136.2 MHz, exact audio clock)",
       "input": {
-        "sps": 56000000,
+        "sps": 52428800,
         "frequency": 110000000,
         "signal": "iq",
         "fft_size": 262144,
