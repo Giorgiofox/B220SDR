@@ -41,7 +41,7 @@
     {
       "id": "rx1",
       "enabled": false,
-      "name": "B220 wideband 32 MS/s (needs USB 3.0)",
+      "name": "B220 wideband 32 MS/s",
       "input": {
         "sps": 32000000,
         "frequency": 100000000,
@@ -79,9 +79,9 @@
     {
       "id": "rx2",
       "enabled": false,
-      "name": "B220 full rate 61.44 MS/s (USB 3.0, heavy CPU)",
+      "name": "B220 full analog bandwidth 56 MS/s",
       "input": {
-        "sps": 61440000,
+        "sps": 56000000,
         "frequency": 100000000,
         "signal": "iq",
         "fft_size": 262144,
@@ -94,7 +94,7 @@
         "brightness_offset": 0,
         "driver": {
           "kind": "soapysdr",
-          "device": "driver=uhd,type=b200,master_clock_rate=61440000",
+          "device": "driver=uhd,type=b200,master_clock_rate=56000000",
           "channel": 0,
           "antenna": "RX2",
           "format": "cs16",
@@ -102,7 +102,6 @@
           "gain": 40.0,
           "settings": {},
           "stream_args": {
-            "WIRE": "sc8",
             "recv_frame_size": "16360",
             "num_recv_frames": "4096"
           },
