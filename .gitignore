@@ -1,0 +1,13 @@
+# Runtime state
+logs/
+data/
+.env
+
+# UHD images are downloaded, not vendored. host-setup.sh and the Dockerfile
+# both fetch them. The LibreSDR bitstream lives in fpga/ and IS tracked.
+uhd-images/
+
+# Recorded IQ
+*.iq
+*.sigmf-data
+*.cf32

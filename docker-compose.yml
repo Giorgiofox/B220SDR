@@ -1,0 +1,56 @@
+# NovaSDR + LibreSDR B220 Mini
+#
+# This compose file assumes the SDR is plugged into the SAME machine that runs
+# Docker. That means Linux. Docker Desktop on macOS and Windows runs in a VM
+# with no USB passthrough, so the device is invisible there no matter what you
+# put under `devices:`. See docs/MACOS.md for what to do on a Mac.
+
+services:
+  novasdr:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        NOVASDR_REF: ${NOVASDR_REF:-45b2951b5771ada2399deb3f6b3ed43c946840ba}
+        NOVASDR_FEATURES: ${NOVASDR_FEATURES:-soapysdr}
+    image: novasdr-b220:local
+    container_name: novasdr-b220
+    restart: unless-stopped
+
+    ports:
+      - "${NOVASDR_BIND:-0.0.0.0}:${NOVASDR_PORT:-9002}:9002"
+
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs
+      - ./data:/app/data
+
+    # UHD reaches the board through libusb, so the whole USB bus has to be
+    # visible. A single /dev/bus/usb/BBB/DDD node is not enough: the FX3
+    # re-enumerates with a new device number after the firmware is loaded,
+    # and the old node disappears.
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+
+    environment:
+      - RUST_LOG=${RUST_LOG:-info}
+      - RUST_BACKTRACE=1
+      - UHD_IMAGES_DIR=/usr/share/uhd/images
+      # Raise if you see "O" overflow markers in the logs at high sample rates.
+      - UHD_RX_BUFF_SIZE=${UHD_RX_BUFF_SIZE:-0}
+
+    # 61.44 MS/s in cs16 is ~245 MB/s off the bus. The FFT buffers scale with
+    # fft_size, so give it room if you push the sample rate up.
+    deploy:
+      resources:
+        limits:
+          memory: ${NOVASDR_MEM_LIMIT:-4G}
+        reservations:
+          memory: 512M
+
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:9002/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s

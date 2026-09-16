@@ -1,0 +1,119 @@
+{
+  "receivers": [
+    {
+      "id": "rx0",
+      "enabled": true,
+      "name": "B220 narrow (USB 2.0 safe)",
+      "input": {
+        "sps": 8000000,
+        "frequency": 100000000,
+        "signal": "iq",
+        "fft_size": 65536,
+        "audio_sps": 12000,
+        "waterfall_size": 1024,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 40.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "8000",
+            "num_recv_frames": "512"
+          },
+          "rx_buffer_samples": 65536
+        },
+        "defaults": {
+          "frequency": 100000000,
+          "modulation": "WBFM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx1",
+      "enabled": false,
+      "name": "B220 wideband 32 MS/s (needs USB 3.0)",
+      "input": {
+        "sps": 32000000,
+        "frequency": 100000000,
+        "signal": "iq",
+        "fft_size": 131072,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 40.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "2048"
+          },
+          "rx_buffer_samples": 262144
+        },
+        "defaults": {
+          "frequency": 100000000,
+          "modulation": "WBFM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx2",
+      "enabled": false,
+      "name": "B220 full rate 61.44 MS/s (USB 3.0, heavy CPU)",
+      "input": {
+        "sps": 61440000,
+        "frequency": 100000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200,master_clock_rate=61440000",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 40.0,
+          "settings": {},
+          "stream_args": {
+            "WIRE": "sc8",
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 100000000,
+          "modulation": "WBFM",
+          "squelch_enabled": false
+        }
+      }
+    }
+  ]
+}
