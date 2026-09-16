@@ -79,14 +79,14 @@
     {
       "id": "rx2",
       "enabled": true,
-      "name": "B220 wide 52.4288 MS/s (83.8-136.2 MHz, exact audio clock)",
+      "name": "B220 light 13.1072 MS/s (91.4-104.6 MHz) - audio load test",
       "input": {
-        "sps": 52428800,
-        "frequency": 110000000,
+        "sps": 13107200,
+        "frequency": 98000000,
         "signal": "iq",
-        "fft_size": 262144,
+        "fft_size": 65536,
         "audio_sps": 48000,
-        "waterfall_size": 2048,
+        "waterfall_size": 1024,
         "waterfall_compression": "zstd",
         "audio_compression": "opus",
         "accelerator": "none",
@@ -108,7 +108,7 @@
           "rx_buffer_samples": 524288
         },
         "defaults": {
-          "frequency": 110000000,
+          "frequency": 98000000,
           "modulation": "WBFM",
           "squelch_enabled": false
         }
