@@ -112,6 +112,92 @@ In order of effectiveness:
 `D` instead means packets were dropped on the bus itself, which points at the
 USB link rather than at CPU load.
 
+## `AssertionError: accum_timeout < _timeout in wait_for_ack`
+
+```
+[ERROR] [b200_radio_ctrl_core.cpp:65] [UHD] Exception caught in safe-call.
+this->peek32(0); _async_task.reset(); -> AssertionError: accum_timeout < _timeout
+  in wait_for_ack at ./host/lib/usrp/b200/b200_radio_ctrl_core.cpp:227
+DSP loop terminated receiver_id=rx2 error=open SoapySDR device
+```
+
+The control channel between the host and the FPGA timed out. Once this happens
+the device stays broken for every subsequent open, including plain
+`uhd_usrp_probe` on the host.
+
+### Cause
+
+Forcing `master_clock_rate` in the SoapySDR device string:
+
+```json
+"device": "driver=uhd,type=b200,master_clock_rate=56000000"
+```
+
+Setting the master clock at device-open time wedges the B200 control core on
+this board. Do not pass it. Let UHD derive the master clock from the sample
+rate you request:
+
+```json
+"device": "driver=uhd,type=b200"
+```
+
+UHD then logs `Setting master clock rate selection to 'automatic'` and picks a
+clock that matches `sps`, which works at every rate up to 56 MS/s.
+
+### Recovery
+
+Nothing short of a power cycle fixes it. Specifically, these do NOT work:
+
+- `USBDEVFS_RESET` on the device node. It resets the USB link but does not cut
+  VBUS, so the FX3 keeps its firmware in RAM and the FPGA keeps its
+  configuration, bad state included.
+- `uhd_image_loader --args="type=b200"`. It reloads the bitstream, and the
+  device becomes visible to `uhd_find_devices` again, but a full open still
+  fails.
+
+**Unplug the USB cable and plug it back in.** Only removing power clears the
+FX3 RAM and the FPGA configuration SRAM. You can tell it worked because the log
+shows `Loading firmware image: ...usrp_b200_fw.hex` again, which never appears
+after a mere link reset.
+
+With root you can approximate a replug without touching the hardware:
+
+```sh
+sudo sh -c 'echo 0 > /sys/bus/usb/devices/2-8/authorized
+            sleep 3
+            echo 1 > /sys/bus/usb/devices/2-8/authorized'
+```
+
+Substitute the correct sysfs path, which `scripts/probe.sh` prints.
+
+## Only one receiver may be enabled at a time
+
+The B210 is a single device. Two receivers with `"enabled": true` open two
+independent UHD sessions against it, and the second open renegotiates
+`master_clock_rate` out from under the first. The symptom is a burst of `O`
+overflow markers and a `D` right after startup, plus a second
+`input opened receiver_id=...` line in the log.
+
+Keep exactly one receiver enabled and point `active_receiver_id` at it. A
+healthy startup logs `Skip disabled receiver` for every other profile.
+
+## The UI says "connection to backend lost"
+
+Check whether `limits.audio` is `0` in `config/config.json`.
+
+The audio upgrade handler refuses a connection when
+`total_audio_clients() >= limits.audio`, so a limit of zero makes `/audio`
+return 429 to every client. The frontend opens `/audio` at startup and treats
+the refusal as the whole backend being unreachable: it tears down the waterfall
+and events sockets as well and reconnects in a loop. The logs show repeated
+`waterfall ws disconnected` and `events ws disconnected` every few tens of
+seconds.
+
+Set `limits.audio` back to a normal value. Disabling audio to save CPU is not
+worth it anyway: audio demodulation is per-client and on demand, so it costs
+nothing while nobody is listening.
+
+
 ## High CPU usage
 
 FFT cost scales with `sps` and `fft_size`; per-client cost scales with the

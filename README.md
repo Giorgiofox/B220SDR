@@ -129,18 +129,25 @@ docker compose logs -f novasdr
 
 | id | Sample rate | Spectrum shown | FFT size | Requires |
 | --- | --- | --- | --- | --- |
-| `rx0` | 8 MS/s | 8 MHz | 65536 | works on USB 2.0 |
-| `rx1` | 32 MS/s | 32 MHz | 131072 | USB 3.0 |
-| `rx2` | 61.44 MS/s | 56 MHz (analog limit) | 262144 | USB 3.0, strong CPU |
+| `rx0` | 8 MS/s | 96-104 MHz | 65536 | works on USB 2.0 |
+| `rx1` | 24 MS/s | 98-122 MHz | 131072 | USB 3.0 |
+| `rx2` | 56 MS/s | 82-138 MHz | 262144 | USB 3.0 |
 
-`rx0` is active by default because it is the profile that works everywhere.
+`rx2` is active by default: 56 MS/s is the full analog bandwidth of the AD9361
+and it runs clean on modest hardware. Measured on an i7-8700T, zero overflows
+over 90 seconds, 1.6 cores and 563 MiB.
 
-Start there, confirm it is clean, then move up. Watch the logs for overflows
-when you do.
+**Exactly one receiver may be enabled at a time.** The B210 is a single device.
+Two enabled receivers open two UHD sessions against it and fight over the
+master clock. A healthy startup logs `Skip disabled receiver` for the others.
 
-`rx2` uses `"WIRE": "sc8"` to halve the USB load, trading dynamic range for
-throughput. At 61.44 MS/s an `sc16` stream is 245 MB/s, which is close enough
-to the practical USB 3.0 ceiling to cause trouble.
+**Never set `master_clock_rate` in the device string.** It wedges the B200
+control core, and only unplugging the USB cable recovers it. Let UHD derive the
+master clock from `sps`. See
+[docs/TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md).
+
+Do not go above 56 MS/s. 61.44 MS/s exceeds the AD9361 analog filter bandwidth,
+so UHD warns and you gain nothing but overflows.
 
 ### Changing frequency and gain
 
@@ -154,8 +161,10 @@ Edit the active receiver in `config/receivers.json`:
 }
 ```
 
-- `frequency` is the **centre** of the captured spectrum, in Hz. Tuning range
-  is 70 MHz to 6 GHz.
+- `frequency` is the **centre** of the captured spectrum, in Hz. The visible
+  span is `frequency - sps/2` to `frequency + sps/2`, so the span always equals
+  the sample rate. This board's frontend reports a tuning range of 50 MHz to
+  6 GHz.
 - `gain` range is 0 to 76 dB. 40 is a sensible start.
 - `antenna` is `RX2` or `TX/RX`. The board has four SMA ports.
 

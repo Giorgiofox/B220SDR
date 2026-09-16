@@ -40,7 +40,7 @@
     },
     {
       "id": "rx1",
-      "enabled": true,
+      "enabled": false,
       "name": "B220 24 MS/s (98-122 MHz)",
       "input": {
         "sps": 24000000,
@@ -78,11 +78,11 @@
     },
     {
       "id": "rx2",
-      "enabled": false,
-      "name": "B220 full analog bandwidth 56 MS/s",
+      "enabled": true,
+      "name": "B220 full analog bandwidth 56 MS/s (82-138 MHz)",
       "input": {
         "sps": 56000000,
-        "frequency": 100000000,
+        "frequency": 110000000,
         "signal": "iq",
         "fft_size": 262144,
         "audio_sps": 12000,
@@ -94,7 +94,7 @@
         "brightness_offset": 0,
         "driver": {
           "kind": "soapysdr",
-          "device": "driver=uhd,type=b200,master_clock_rate=56000000",
+          "device": "driver=uhd,type=b200",
           "channel": 0,
           "antenna": "RX2",
           "format": "cs16",
@@ -108,7 +108,7 @@
           "rx_buffer_samples": 524288
         },
         "defaults": {
-          "frequency": 100000000,
+          "frequency": 110000000,
           "modulation": "WBFM",
           "squelch_enabled": false
         }
