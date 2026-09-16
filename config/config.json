@@ -19,7 +19,7 @@
     "public_port": null
   },
   "limits": {
-    "audio": 100,
+    "audio": 0,
     "waterfall": 200,
     "events": 200,
     "ws_per_ip": 50
@@ -27,5 +27,5 @@
   "updates": {
     "check_on_startup": false
   },
-  "active_receiver_id": "rx0"
+  "active_receiver_id": "rx1"
 }

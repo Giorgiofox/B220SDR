@@ -2,7 +2,7 @@
   "receivers": [
     {
       "id": "rx0",
-      "enabled": true,
+      "enabled": false,
       "name": "B220 narrow (USB 2.0 safe)",
       "input": {
         "sps": 8000000,
@@ -40,11 +40,11 @@
     },
     {
       "id": "rx1",
-      "enabled": false,
-      "name": "B220 wideband 32 MS/s",
+      "enabled": true,
+      "name": "B220 24 MS/s (98-122 MHz)",
       "input": {
-        "sps": 32000000,
-        "frequency": 100000000,
+        "sps": 24000000,
+        "frequency": 110000000,
         "signal": "iq",
         "fft_size": 131072,
         "audio_sps": 12000,
@@ -70,7 +70,7 @@
           "rx_buffer_samples": 262144
         },
         "defaults": {
-          "frequency": 100000000,
+          "frequency": 110000000,
           "modulation": "WBFM",
           "squelch_enabled": false
         }
