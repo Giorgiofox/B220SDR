@@ -42,7 +42,9 @@ FROM ubuntu:24.04 AS backend
 
 ARG NOVASDR_REPO
 ARG NOVASDR_REF
-ARG RUST_VERSION=1.83.0
+# NovaSDR itself is edition 2021, but transitive dependencies (clap_lex and
+# others) now require edition 2024, which is only stable from Rust 1.85.0.
+ARG RUST_VERSION=1.98.1
 # Cargo features. clfft needs an OpenCL ICD at runtime; drop it for a pure
 # CPU build. vkfft is Linux only and needs a Vulkan stack in the container.
 ARG NOVASDR_FEATURES=soapysdr
