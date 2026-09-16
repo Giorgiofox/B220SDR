@@ -198,6 +198,69 @@ worth it anyway: audio demodulation is per-client and on demand, so it costs
 nothing while nobody is listening.
 
 
+## The Bands menu looks empty
+
+Two things surprise people here, and neither is a fault.
+
+### Your bands are under "Other", not "Amateur (HAM)"
+
+The Bands dropdown has three submenus and fills them like this:
+
+```js
+const ham = hamBandsForItuRegion(ituRegion);   // hardcoded in the frontend
+for (const b of bands) {
+  if (!inReceiverRange(b)) continue;
+  if (/\bHAM\b/i.test(b.name)) continue;       // dropped, the list above covers these
+  if (/\bAM\b/i.test(b.name)) broadcast.push(b);
+  else other.push(b);
+}
+```
+
+"Amateur (HAM)" never reads `config/overlays/bands.json` at all: it comes from
+a band plan compiled into the frontend, chosen by ITU region. Worse, every
+entry in your file whose name contains "HAM" is explicitly discarded.
+
+"Broadcast (AM)" only takes entries with "AM" as a whole word in the name.
+
+Everything else, which is most of a service band plan, lands in **"Other"**.
+That submenu is only rendered when it is non-empty, so at a centre frequency
+with nothing nearby you see just the two empty submenus and conclude the
+feature is broken.
+
+### Only bands inside the captured slice are listed
+
+`inReceiverRange` keeps an entry when it overlaps `basefreq` to
+`basefreq + total_bandwidth`. With a 56 MHz slice at 5.2 GHz that is four
+entries; at 82-138 MHz it is eight. The rest of the file is still sent to the
+browser, it is simply filtered out of the menu.
+
+Bands also draw as coloured regions directly on the waterfall, which does not
+go through this menu at all.
+
+### It did not update after you edited the file
+
+The band list reaches the browser inside the first text message of the
+`/waterfall` WebSocket, sent once when that socket connects. The server
+re-reads `bands.json` every 60 seconds, but a page that is already open keeps
+whatever it was given at connect time.
+
+Reload the page with Ctrl+Shift+R, or Cmd+Shift+R on macOS.
+
+To check what the server is actually sending, without a browser:
+
+```sh
+python3 - <<'EOF'
+import asyncio, json, websockets
+async def main():
+    async with websockets.connect("ws://127.0.0.1:9002/waterfall", max_size=None) as ws:
+        d = json.loads(await ws.recv())
+        print(d['receiver_name'], d['basefreq'], d['total_bandwidth'])
+        print(len(json.loads(d['bands'])['bands']), 'bands')
+asyncio.run(main())
+EOF
+```
+
+
 ## High CPU usage
 
 FFT cost scales with `sps` and `fft_size`; per-client cost scales with the

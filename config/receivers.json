@@ -78,7 +78,7 @@
     },
     {
       "id": "rx2",
-      "enabled": false,
+      "enabled": true,
       "name": "B220 full analog bandwidth 56 MS/s (82-138 MHz)",
       "input": {
         "sps": 56000000,
@@ -1294,7 +1294,7 @@
     },
     {
       "id": "rx_wifi5_1",
-      "enabled": true,
+      "enabled": false,
       "name": "SHF | WiFi 5 UNII-1 5150-5250",
       "input": {
         "sps": 56000000,
