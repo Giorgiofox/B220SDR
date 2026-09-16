@@ -261,6 +261,82 @@ EOF
 ```
 
 
+## The audio stutters
+
+The usual cause is not CPU or network. It is the audio passband being wider
+than the server will allow, which makes it reject the tuning request outright.
+
+In `ws/audio.rs`:
+
+```rust
+let audio_fft_size = rt.audio_max_fft_size as i32;
+if r - l > audio_fft_size {
+    return;          // window too wide: the request is dropped silently
+}
+```
+
+and `audio_max_fft_size` comes from `config.rs`:
+
+```
+audio_max_fft_size = ceil(audio_sps * fft_size / sps / 4) * 4
+```
+
+Multiply that back out by the bin width (`sps / fft_size`) and the ceiling on
+the audio passband is, to within one bin, simply **`audio_sps`**.
+
+So with the default `audio_sps` of 12000 the widest passband is about 12 kHz,
+whatever the sample rate or FFT size. A receiver whose default modulation is
+`WBFM` asks for far more than that, the request is dropped, and the audio comes
+out in fragments.
+
+Check the startup log for the computed value:
+
+```
+active receiver runtime derived ... audio_max_fft_size=60
+```
+
+At 56 MS/s with `fft_size` 262144 each bin is 213.6 Hz, so 60 bins is 12.8 kHz.
+
+### Fix
+
+Raise `audio_sps` in `config/receivers.json`. 48000 is the Opus maximum:
+
+```json
+"audio_sps": 48000
+```
+
+That takes the same receiver to 228 bins, or 48.7 kHz.
+
+### What this does not fix
+
+48 kHz is the hard ceiling, and a broadcast FM channel occupies roughly
+200 kHz. `WBFM` will therefore stay band limited no matter how you configure
+it. This is not a misconfiguration: NovaSDR targets HF WebSDR use, where SSB,
+AM and CW all fit in a few kHz and the limit never shows.
+
+AM, NFM, SSB and CW all fit comfortably and sound clean. For a clean test,
+tune an AM carrier in the airband rather than a broadcast FM station.
+
+### If it still stutters
+
+Look for the audio socket reconnecting in a loop:
+
+```sh
+docker compose logs --since 15m novasdr | grep -c 'audio ws connected'
+```
+
+Repeated connects a minute apart mean the browser is giving up and retrying.
+Check for genuine overflows at the same time, counting the raw markers UHD
+writes straight to stderr rather than the rate limited tracing message:
+
+```sh
+docker compose logs novasdr | tr -cd 'O' | wc -c
+```
+
+Take that count twice, a minute apart. The `RX overflow` WARN line is emitted
+far less often than the markers and will understate the problem badly.
+
+
 ## High CPU usage
 
 FFT cost scales with `sps` and `fft_size`; per-client cost scales with the
