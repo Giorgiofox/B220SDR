@@ -78,7 +78,7 @@
     },
     {
       "id": "rx2",
-      "enabled": true,
+      "enabled": false,
       "name": "B220 full analog bandwidth 56 MS/s (82-138 MHz)",
       "input": {
         "sps": 56000000,
@@ -110,6 +110,500 @@
         "defaults": {
           "frequency": 110000000,
           "modulation": "WBFM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_wifi24",
+      "enabled": true,
+      "name": "WiFi / ISM 2.4 GHz (2409-2465 MHz)",
+      "input": {
+        "sps": 56000000,
+        "frequency": 2437000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 30.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 2437000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_air",
+      "enabled": false,
+      "name": "VHF airband + FM broadcast",
+      "input": {
+        "sps": 56000000,
+        "frequency": 110000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 110000000,
+          "modulation": "AM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_vhf",
+      "enabled": false,
+      "name": "VHF marine, 2m ham, PMR, NOAA APT",
+      "input": {
+        "sps": 56000000,
+        "frequency": 160000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 160000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_dab",
+      "enabled": false,
+      "name": "DAB band III + VHF high",
+      "input": {
+        "sps": 56000000,
+        "frequency": 200000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 200000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_uhf",
+      "enabled": false,
+      "name": "70cm ham, ISM 433, TETRA, PMR446",
+      "input": {
+        "sps": 56000000,
+        "frequency": 435000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 435000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_dvbt",
+      "enabled": false,
+      "name": "DVB-T lower UHF",
+      "input": {
+        "sps": 56000000,
+        "frequency": 600000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 600000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_ism868",
+      "enabled": false,
+      "name": "ISM 868 / LoRa EU / GSM900",
+      "input": {
+        "sps": 56000000,
+        "frequency": 880000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 880000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_adsb",
+      "enabled": false,
+      "name": "ADS-B 1090 MHz",
+      "input": {
+        "sps": 8000000,
+        "frequency": 1090000000,
+        "signal": "iq",
+        "fft_size": 65536,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 55.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 1090000000,
+          "modulation": "AM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_gps",
+      "enabled": false,
+      "name": "GPS L1 / Galileo E1 1575.42 MHz",
+      "input": {
+        "sps": 8000000,
+        "frequency": 1575420000,
+        "signal": "iq",
+        "fft_size": 65536,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 60.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 1575420000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_iridium",
+      "enabled": false,
+      "name": "Iridium 1616-1626 MHz",
+      "input": {
+        "sps": 16000000,
+        "frequency": 1621000000,
+        "signal": "iq",
+        "fft_size": 65536,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 55.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 1621000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_lte18",
+      "enabled": false,
+      "name": "LTE band 3 / DCS 1800",
+      "input": {
+        "sps": 56000000,
+        "frequency": 1800000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 45.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 1800000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_ism24b",
+      "enabled": false,
+      "name": "WiFi/ISM 2.4 GHz upper",
+      "input": {
+        "sps": 56000000,
+        "frequency": 2462000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 30.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 2462000000,
+          "modulation": "FM",
+          "squelch_enabled": false
+        }
+      }
+    },
+    {
+      "id": "rx_wifi5",
+      "enabled": false,
+      "name": "WiFi 5 GHz lower (UNII-1/2)",
+      "input": {
+        "sps": 56000000,
+        "frequency": 5240000000,
+        "signal": "iq",
+        "fft_size": 262144,
+        "audio_sps": 12000,
+        "waterfall_size": 2048,
+        "waterfall_compression": "zstd",
+        "audio_compression": "opus",
+        "accelerator": "none",
+        "smeter_offset": 0,
+        "brightness_offset": 0,
+        "driver": {
+          "kind": "soapysdr",
+          "device": "driver=uhd,type=b200",
+          "channel": 0,
+          "antenna": "RX2",
+          "format": "cs16",
+          "agc": false,
+          "gain": 30.0,
+          "settings": {},
+          "stream_args": {
+            "recv_frame_size": "16360",
+            "num_recv_frames": "4096"
+          },
+          "rx_buffer_samples": 524288
+        },
+        "defaults": {
+          "frequency": 5240000000,
+          "modulation": "FM",
           "squelch_enabled": false
         }
       }

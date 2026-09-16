@@ -537,6 +537,74 @@
       ]
     },
     {
+      "name": "FM broadcast",
+      "startHz": 87500000,
+      "endHz": 108000000,
+      "startFreq": 87500000,
+      "endFreq": 108000000,
+      "color": "rgba(255, 145, 0, 0.55)",
+      "modes": [
+        {
+          "mode": "WBFM",
+          "startHz": 87500000,
+          "endHz": 108000000,
+          "startFreq": 87500000,
+          "endFreq": 108000000
+        }
+      ]
+    },
+    {
+      "name": "Airband VOR/ILS",
+      "startHz": 108000000,
+      "endHz": 117975000,
+      "startFreq": 108000000,
+      "endFreq": 117975000,
+      "color": "rgba(56, 132, 255, 0.55)",
+      "modes": [
+        {
+          "mode": "AM",
+          "startHz": 108000000,
+          "endHz": 117975000,
+          "startFreq": 108000000,
+          "endFreq": 117975000
+        }
+      ]
+    },
+    {
+      "name": "Airband voice",
+      "startHz": 118000000,
+      "endHz": 136975000,
+      "startFreq": 118000000,
+      "endFreq": 136975000,
+      "color": "rgba(56, 132, 255, 0.55)",
+      "modes": [
+        {
+          "mode": "AM",
+          "startHz": 118000000,
+          "endHz": 136975000,
+          "startFreq": 118000000,
+          "endFreq": 136975000
+        }
+      ]
+    },
+    {
+      "name": "Weather sats APT",
+      "startHz": 137000000,
+      "endHz": 138000000,
+      "startFreq": 137000000,
+      "endFreq": 138000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 137000000,
+          "endHz": 138000000,
+          "startFreq": 137000000,
+          "endFreq": 138000000
+        }
+      ]
+    },
+    {
       "name": "2M HAM",
       "startHz": 144000000,
       "endHz": 148000000,
@@ -568,6 +636,74 @@
       ]
     },
     {
+      "name": "Marine VHF",
+      "startHz": 156000000,
+      "endHz": 162050000,
+      "startFreq": 156000000,
+      "endFreq": 162050000,
+      "color": "rgba(0, 190, 200, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 156000000,
+          "endHz": 162050000,
+          "startFreq": 156000000,
+          "endFreq": 162050000
+        }
+      ]
+    },
+    {
+      "name": "AIS",
+      "startHz": 161900000,
+      "endHz": 162050000,
+      "startFreq": 161900000,
+      "endFreq": 162050000,
+      "color": "rgba(0, 190, 200, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 161900000,
+          "endHz": 162050000,
+          "startFreq": 161900000,
+          "endFreq": 162050000
+        }
+      ]
+    },
+    {
+      "name": "DAB band III",
+      "startHz": 174000000,
+      "endHz": 240000000,
+      "startFreq": 174000000,
+      "endFreq": 240000000,
+      "color": "rgba(255, 145, 0, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 174000000,
+          "endHz": 240000000,
+          "startFreq": 174000000,
+          "endFreq": 240000000
+        }
+      ]
+    },
+    {
+      "name": "TETRA",
+      "startHz": 380000000,
+      "endHz": 400000000,
+      "startFreq": 380000000,
+      "endFreq": 400000000,
+      "color": "rgba(239, 68, 68, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 380000000,
+          "endHz": 400000000,
+          "startFreq": 380000000,
+          "endFreq": 400000000
+        }
+      ]
+    },
+    {
       "name": "70CM HAM",
       "startHz": 430000000,
       "endHz": 440000000,
@@ -595,6 +731,431 @@
           "endHz": 440000000,
           "startFreq": 432100000,
           "endFreq": 440000000
+        }
+      ]
+    },
+    {
+      "name": "ISM 433",
+      "startHz": 433050000,
+      "endHz": 434790000,
+      "startFreq": 433050000,
+      "endFreq": 434790000,
+      "color": "rgba(148, 163, 184, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 433050000,
+          "endHz": 434790000,
+          "startFreq": 433050000,
+          "endFreq": 434790000
+        }
+      ]
+    },
+    {
+      "name": "PMR446",
+      "startHz": 446000000,
+      "endHz": 446200000,
+      "startFreq": 446000000,
+      "endFreq": 446200000,
+      "color": "rgba(148, 163, 184, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 446000000,
+          "endHz": 446200000,
+          "startFreq": 446000000,
+          "endFreq": 446200000
+        }
+      ]
+    },
+    {
+      "name": "DVB-T UHF",
+      "startHz": 470000000,
+      "endHz": 694000000,
+      "startFreq": 470000000,
+      "endFreq": 694000000,
+      "color": "rgba(255, 145, 0, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 470000000,
+          "endHz": 694000000,
+          "startFreq": 470000000,
+          "endFreq": 694000000
+        }
+      ]
+    },
+    {
+      "name": "ISM 868 / LoRa EU",
+      "startHz": 863000000,
+      "endHz": 870000000,
+      "startFreq": 863000000,
+      "endFreq": 870000000,
+      "color": "rgba(148, 163, 184, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 863000000,
+          "endHz": 870000000,
+          "startFreq": 863000000,
+          "endFreq": 870000000
+        }
+      ]
+    },
+    {
+      "name": "GSM900 uplink",
+      "startHz": 880000000,
+      "endHz": 915000000,
+      "startFreq": 880000000,
+      "endFreq": 915000000,
+      "color": "rgba(239, 68, 68, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 880000000,
+          "endHz": 915000000,
+          "startFreq": 880000000,
+          "endFreq": 915000000
+        }
+      ]
+    },
+    {
+      "name": "GSM900 downlink",
+      "startHz": 925000000,
+      "endHz": 960000000,
+      "startFreq": 925000000,
+      "endFreq": 960000000,
+      "color": "rgba(239, 68, 68, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 925000000,
+          "endHz": 960000000,
+          "startFreq": 925000000,
+          "endFreq": 960000000
+        }
+      ]
+    },
+    {
+      "name": "ADS-B 1090",
+      "startHz": 1089000000,
+      "endHz": 1091000000,
+      "startFreq": 1089000000,
+      "endFreq": 1091000000,
+      "color": "rgba(56, 132, 255, 0.55)",
+      "modes": [
+        {
+          "mode": "AM",
+          "startHz": 1089000000,
+          "endHz": 1091000000,
+          "startFreq": 1089000000,
+          "endFreq": 1091000000
+        }
+      ]
+    },
+    {
+      "name": "GPS L5 / Galileo E5a",
+      "startHz": 1164000000,
+      "endHz": 1189000000,
+      "startFreq": 1164000000,
+      "endFreq": 1189000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1164000000,
+          "endHz": 1189000000,
+          "startFreq": 1164000000,
+          "endFreq": 1189000000
+        }
+      ]
+    },
+    {
+      "name": "Galileo E5b",
+      "startHz": 1191000000,
+      "endHz": 1217000000,
+      "startFreq": 1191000000,
+      "endFreq": 1217000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1191000000,
+          "endHz": 1217000000,
+          "startFreq": 1191000000,
+          "endFreq": 1217000000
+        }
+      ]
+    },
+    {
+      "name": "GPS L2",
+      "startHz": 1215000000,
+      "endHz": 1240000000,
+      "startFreq": 1215000000,
+      "endFreq": 1240000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1215000000,
+          "endHz": 1240000000,
+          "startFreq": 1215000000,
+          "endFreq": 1240000000
+        }
+      ]
+    },
+    {
+      "name": "Inmarsat L-band down",
+      "startHz": 1525000000,
+      "endHz": 1559000000,
+      "startFreq": 1525000000,
+      "endFreq": 1559000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1525000000,
+          "endHz": 1559000000,
+          "startFreq": 1525000000,
+          "endFreq": 1559000000
+        }
+      ]
+    },
+    {
+      "name": "GPS L1 / Galileo E1",
+      "startHz": 1563000000,
+      "endHz": 1587000000,
+      "startFreq": 1563000000,
+      "endFreq": 1587000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1563000000,
+          "endHz": 1587000000,
+          "startFreq": 1563000000,
+          "endFreq": 1587000000
+        }
+      ]
+    },
+    {
+      "name": "GLONASS L1",
+      "startHz": 1598000000,
+      "endHz": 1606000000,
+      "startFreq": 1598000000,
+      "endFreq": 1606000000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1598000000,
+          "endHz": 1606000000,
+          "startFreq": 1598000000,
+          "endFreq": 1606000000
+        }
+      ]
+    },
+    {
+      "name": "Iridium",
+      "startHz": 1616000000,
+      "endHz": 1626500000,
+      "startFreq": 1616000000,
+      "endFreq": 1626500000,
+      "color": "rgba(168, 85, 247, 0.55)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1616000000,
+          "endHz": 1626500000,
+          "startFreq": 1616000000,
+          "endFreq": 1626500000
+        }
+      ]
+    },
+    {
+      "name": "DCS1800 / LTE B3",
+      "startHz": 1710000000,
+      "endHz": 1880000000,
+      "startFreq": 1710000000,
+      "endFreq": 1880000000,
+      "color": "rgba(239, 68, 68, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1710000000,
+          "endHz": 1880000000,
+          "startFreq": 1710000000,
+          "endFreq": 1880000000
+        }
+      ]
+    },
+    {
+      "name": "UMTS/LTE 2100",
+      "startHz": 1920000000,
+      "endHz": 2170000000,
+      "startFreq": 1920000000,
+      "endFreq": 2170000000,
+      "color": "rgba(239, 68, 68, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 1920000000,
+          "endHz": 2170000000,
+          "startFreq": 1920000000,
+          "endFreq": 2170000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi 2.4 / ISM",
+      "startHz": 2400000000,
+      "endHz": 2483500000,
+      "startFreq": 2400000000,
+      "endFreq": 2483500000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 2400000000,
+          "endHz": 2483500000,
+          "startFreq": 2400000000,
+          "endFreq": 2483500000
+        }
+      ]
+    },
+    {
+      "name": "WiFi ch1",
+      "startHz": 2401000000,
+      "endHz": 2423000000,
+      "startFreq": 2401000000,
+      "endFreq": 2423000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 2401000000,
+          "endHz": 2423000000,
+          "startFreq": 2401000000,
+          "endFreq": 2423000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi ch6",
+      "startHz": 2426000000,
+      "endHz": 2448000000,
+      "startFreq": 2426000000,
+      "endFreq": 2448000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 2426000000,
+          "endHz": 2448000000,
+          "startFreq": 2426000000,
+          "endFreq": 2448000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi ch11",
+      "startHz": 2451000000,
+      "endHz": 2473000000,
+      "startFreq": 2451000000,
+      "endFreq": 2473000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 2451000000,
+          "endHz": 2473000000,
+          "startFreq": 2451000000,
+          "endFreq": 2473000000
+        }
+      ]
+    },
+    {
+      "name": "LTE 2600",
+      "startHz": 2500000000,
+      "endHz": 2690000000,
+      "startFreq": 2500000000,
+      "endFreq": 2690000000,
+      "color": "rgba(239, 68, 68, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 2500000000,
+          "endHz": 2690000000,
+          "startFreq": 2500000000,
+          "endFreq": 2690000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi 5 UNII-1",
+      "startHz": 5150000000,
+      "endHz": 5250000000,
+      "startFreq": 5150000000,
+      "endFreq": 5250000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 5150000000,
+          "endHz": 5250000000,
+          "startFreq": 5150000000,
+          "endFreq": 5250000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi 5 UNII-2",
+      "startHz": 5250000000,
+      "endHz": 5350000000,
+      "startFreq": 5250000000,
+      "endFreq": 5350000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 5250000000,
+          "endHz": 5350000000,
+          "startFreq": 5250000000,
+          "endFreq": 5350000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi 5 UNII-2e",
+      "startHz": 5470000000,
+      "endHz": 5725000000,
+      "startFreq": 5470000000,
+      "endFreq": 5725000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 5470000000,
+          "endHz": 5725000000,
+          "startFreq": 5470000000,
+          "endFreq": 5725000000
+        }
+      ]
+    },
+    {
+      "name": "WiFi 5 UNII-3 / ISM",
+      "startHz": 5725000000,
+      "endHz": 5875000000,
+      "startFreq": 5725000000,
+      "endFreq": 5875000000,
+      "color": "rgba(236, 72, 153, 0.50)",
+      "modes": [
+        {
+          "mode": "FM",
+          "startHz": 5725000000,
+          "endHz": 5875000000,
+          "startFreq": 5725000000,
+          "endFreq": 5875000000
         }
       ]
     }
